@@ -77,8 +77,6 @@ else
     ./utils/InstallAptDependencies.sh
 fi
 
-pip3 install cmake
-
 if [ ! -z "${DESIRED_BOOST_DIR}" ]; then
     BOOST_PARAMS="-DBOOST_ROOT=${DESIRED_BOOST_DIR}"
 else
