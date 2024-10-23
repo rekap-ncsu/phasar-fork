@@ -1,0 +1,19 @@
+{
+	"name": "taint analysis through string concat",
+	"version": 1,
+	"functions": [
+		{
+			"name": "_ZN9simple_rs11source_func17h37261d3eca9db128E",
+			"ret": "source",
+			"params": {}
+		},
+		{
+			"name": "_ZN9simple_rs9sink_func17h19e10ee64a48161bE",
+			"params":
+            {
+				"sink": [0]
+			}
+		}
+	],
+	"variables": []
+}

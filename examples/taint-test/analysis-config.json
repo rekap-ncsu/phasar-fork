@@ -1,0 +1,19 @@
+{
+	"name": "simple taint analysis",
+	"version": 1,
+	"functions": [
+		{
+			"name": "source",
+			"ret": "source",
+			"params": {}
+		},
+		{
+			"name": "do_something",
+			"params":
+            {
+				"sink": [0]
+			}
+		}
+	],
+	"variables": []
+}
