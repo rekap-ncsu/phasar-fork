@@ -5,14 +5,16 @@
 		{
 			"name": "_ZN9simple_rs11source_func17h37261d3eca9db128E",
 			"ret": "source",
-			"params": {}
+			"params": {},
+			"comment": "find the mangled source name"
 		},
 		{
 			"name": "_ZN9simple_rs9sink_func17h19e10ee64a48161bE",
 			"params":
             {
 				"sink": [0]
-			}
+			},
+			"comment": "find the mangled source name"
 		}
 	],
 	"variables": []
