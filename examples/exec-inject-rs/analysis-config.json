@@ -1,0 +1,23 @@
+{
+	"name": "taint analysis through string concat",
+	"version": 1,
+	"functions": [
+		{
+			"name": "_ZN3std2io5stdio5Stdin9read_line17hb7a92926537ebadfE",
+			"ret": "source",
+			"params": {
+				"source": [0]
+			},
+			"comment": "find the mangled source name"
+		},
+		{
+			"name": "_ZN3std7process7Command3arg17h35e41d65b7a2dcf8E",
+			"params":
+            {
+				"sink": [0]
+			},
+			"comment": "find the mangled source name"
+		}
+	],
+	"variables": []
+}
