@@ -14,7 +14,7 @@
             {
 				"sink": [0]
 			},
-			"comment": "find the mangled source name"
+			"comment": "find the mangled sink name"
 		}
 	],
 	"variables": []
