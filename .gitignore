@@ -31,6 +31,8 @@ build/*
 
 # MS VS Code
 .vscode/*
+# include settings files because I want a record of them
+!.vscode/*.json
 
 # Eclipse
 .cproject
