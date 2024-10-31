@@ -9,4 +9,11 @@ run analysis:
 `phasar-cli -m target/debug/deps/simple_rs-bfbc34c031ddf687.ll -D ifds-taint --analysis-config=analysis-config.json`
 
 run analysis with entry point specified:
-`phasar-cli -m target/debug/deps/simple_rs-bfbc34c031ddf687.ll -D ifds-taint --analysis-config=analysis-config.json --entry-points="_ZN9simple_rs4main17h853097ccb5531a89E"`
+```
+phasar-cli -m target/debug/deps/simple_rs-bfbc34c031ddf687.ll -D ifds-taint --analysis-config=analysis-config.json --entry-points="_ZN9simple_rs4main17h853097ccb5531a89E"
+```
+
+run with debug logs
+```
+phasar-cli -m target/debug/deps/simple_rs-bfbc34c031ddf687.ll -D ifds-taint --analysis-config=analysis-config.json --entry-points="_ZN9simple_rs4main17h853097ccb5531a89E" -L --log-level=DEBUG
+```
