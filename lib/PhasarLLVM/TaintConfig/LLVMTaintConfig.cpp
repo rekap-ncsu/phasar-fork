@@ -322,6 +322,7 @@ void LLVMTaintConfig::addTaintCategory(const llvm::Value *Val,
 //
 
 bool LLVMTaintConfig::isSourceImpl(const llvm::Value *V) const {
+  PHASAR_LOG_LEVEL(DEBUG, "LLVMTaintConfig::isSourceImpl: " << V->getName() << ", " << V->getValueName());
   return SourceValues.count(V);
 }
 bool LLVMTaintConfig::isSinkImpl(const llvm::Value *V) const {

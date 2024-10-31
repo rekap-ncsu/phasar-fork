@@ -45,6 +45,8 @@ IFDSTaintAnalysis::IFDSTaintAnalysis(const LLVMProjectIRDB *IRDB,
 bool IFDSTaintAnalysis::isSourceCall(const llvm::CallBase *CB,
                                      const llvm::Function *Callee) const {
   for (const auto &Arg : Callee->args()) {
+    PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::isSourceCall: ");
+    PHASAR_LOG_LEVEL(DEBUG, Arg.hasName());
     if (Config->isSource(&Arg)) {
       return true;
     }
@@ -179,12 +181,18 @@ IFDSTaintAnalysis::getCallFlowFunction(IFDSTaintAnalysis::n_t CallSite,
 }
 
 IFDSTaintAnalysis::FlowFunctionPtrType IFDSTaintAnalysis::getRetFlowFunction(
-    IFDSTaintAnalysis::n_t CallSite, IFDSTaintAnalysis::f_t /*CalleeFun*/,
+    IFDSTaintAnalysis::n_t CallSite, IFDSTaintAnalysis::f_t CalleeFun,
     IFDSTaintAnalysis::n_t ExitStmt,
     [[maybe_unused]] IFDSTaintAnalysis::n_t RetSite) {
   // We must check if the return value and formal parameter are tainted, if so
   // we must taint all user's of the function call. We are only interested in
   // formal parameters of pointer/reference type.
+  PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::getRetFlowFunction: " << this->NtoString(CallSite));
+  PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::getRetFlowFunction: " << this->FtoString(CalleeFun));
+  if(this->FtoString(CalleeFun).compare("_ZN13simple_str_rs11source_func17hd027c76cff9e41dbE") == 0)
+  {
+    PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::getRetFlowFunction: true");
+  }
   return mapFactsToCaller(
       llvm::cast<llvm::CallBase>(CallSite), ExitStmt,
       [](d_t Formal, d_t Source) {
