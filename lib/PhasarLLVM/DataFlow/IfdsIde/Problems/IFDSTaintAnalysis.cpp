@@ -189,7 +189,7 @@ IFDSTaintAnalysis::FlowFunctionPtrType IFDSTaintAnalysis::getRetFlowFunction(
   // formal parameters of pointer/reference type.
   PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::getRetFlowFunction: " << this->NtoString(CallSite));
   PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::getRetFlowFunction: " << this->FtoString(CalleeFun));
-  if(this->FtoString(CalleeFun).compare("_ZN13simple_str_rs11source_func17hd027c76cff9e41dbE") == 0)
+  if(this->FtoString(CalleeFun).find("source_func") >= 0)
   {
     PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::getRetFlowFunction: true");
   }
