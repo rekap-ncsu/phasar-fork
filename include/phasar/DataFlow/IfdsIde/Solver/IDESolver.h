@@ -1168,7 +1168,6 @@ protected:
   computeReturnFlowFunction(const FlowFunctionPtrType &RetFlowFunction,
                             d_t /*d1*/, d_t d2, n_t /*CallSite*/,
                             const Container & /*CallerSideDs*/) {
-    PHASAR_LOG_LEVEL(DEBUG, "IDESolver::computeReturnFlowFunction: " << d2.);
     return RetFlowFunction->computeTargets(d2);
   }
 
