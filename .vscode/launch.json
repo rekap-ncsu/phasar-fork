@@ -5,19 +5,23 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "simple-rs",
+            "name": "simple-str-rs",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceRoot}/build/tools/phasar-cli/phasar-cli",
             "args": [
                 "-m",
-                "target/debug/deps/simple_rs-bfbc34c031ddf687.ll", //this is brittle. it changes with every build
+                "target/debug/deps/simple_str_rs-233e9c805b7721fc.ll", //this is brittle. it changes with every build
                 "-D",
                 "ifds-taint",
-                "--analysis-config=analysis_config.json",
+                "--analysis-config=analysis-config.json",
+                "--entry-points",
+                "_ZN13simple_str_rs4main17h0ce9277909836a48E", //also brittle
+                "-L",
+                "-log-level=DEBUG",
             ],
             "stopAtEntry": false,
-            "cwd": "${workspaceRoot}/examples/simple-rs/",
+            "cwd": "${workspaceRoot}/examples/simple-str-rs/",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
@@ -33,6 +37,7 @@
                     "ignoreFailures": true
                 }
             ]
-        }
+        },
+        
     ]
 }
