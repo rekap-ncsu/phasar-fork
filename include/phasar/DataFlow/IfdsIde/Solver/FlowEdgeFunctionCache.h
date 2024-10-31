@@ -283,9 +283,14 @@ public:
                          "(N) Call Site : " << Problem.NtoString(CallSite));
         PHASAR_LOG_LEVEL(DEBUG,
                          "(N) Ret Site  : " << Problem.NtoString(RetSite));
-        PHASAR_LOG_LEVEL(DEBUG, "(F) Callee's  : "); for (auto callee
-                                                          : Callees) {
+        PHASAR_LOG_LEVEL(DEBUG, "(F) Callee's  : "); 
+        for (auto callee: Callees) 
+        {
           PHASAR_LOG_LEVEL(DEBUG, "  " << Problem.FtoString(callee));
+          if(Problem.FtoString(callee).find("source_func") >= 0)
+          {
+            PHASAR_LOG_LEVEL(DEBUG, "found hard-coded source func");
+          }
         };);
     auto Key = std::tie(CallSite, RetSite);
     auto SearchCallToRetFlowFunction = CallToRetFlowFunctionCache.find(Key);
