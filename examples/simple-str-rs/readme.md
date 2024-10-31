@@ -19,5 +19,5 @@ phasar-cli -m target/debug/deps/simple_str_rs-233e9c805b7721fc.ll -D ifds-taint 
 
 grep for the source-function
 ```
-phasar-cli -m target/debug/deps/simple_str_rs-233e9c805b7721fc.ll -D ifds-taint --analysis-config=analysis-config.json --entry-points="_ZN13simple_str_rs4main17h0ce9277909836a48E" -L --log-level=DEBUG 2>&1 | grep _ZN13simple_str_rs11source_func17hd027c76cff9e41dbE
+phasar-cli -m target/debug/deps/simple_str_rs-233e9c805b7721fc.ll -D ifds-taint --analysis-config=analysis-config.json --entry-points="_ZN13simple_str_rs4main17h0ce9277909836a48E" -L --log-level=DEBUG 2>&1 | grep -C 10 source_func
 ```
