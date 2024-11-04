@@ -287,18 +287,16 @@ public:
         for (auto callee: Callees) 
         {
           PHASAR_LOG_LEVEL(DEBUG, "  " << Problem.FtoString(callee));
-          if(Problem.FtoString(callee).find("source_func") != std::string::npos)
-          {
-            PHASAR_LOG_LEVEL(DEBUG, "" << Problem.FtoString(callee).find("source_func"));
-            PHASAR_LOG_LEVEL(DEBUG, "found hard-coded source func");
-          }
         };);
     for (auto callee: Callees) 
     {
       if(Problem.FtoString(callee).find("source_func") != std::string::npos)
       {
-        PHASAR_LOG_LEVEL(DEBUG, "" << Problem.FtoString(callee).find("source_func"));
         PHASAR_LOG_LEVEL(DEBUG, "found hard-coded source func");
+      }
+      if(Problem.FtoString(callee).find("sink_func") != std::string::npos)
+      {
+        PHASAR_LOG_LEVEL(DEBUG, "found hard-coded sink func");
       }
     }
     auto Key = std::tie(CallSite, RetSite);
