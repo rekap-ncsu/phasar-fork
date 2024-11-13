@@ -4,9 +4,10 @@
 	"functions": [
 		{
 			"name": "_ZN13simple_str_rs11source_func17hd027c76cff9e41dbE",
-			"ret": "source",
-			"params": {},
-			"comment": "find the mangled source name"
+			"params": {
+				"source": [0]
+			},
+			"comment": "find the mangled source name. If the source returns an object, then the return value is the last param of the function"
 		},
 		{
 			"name": "_ZN13simple_str_rs9sink_func17h6eeec4625f5a11edE",

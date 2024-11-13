@@ -15,5 +15,5 @@ phasar-cli -m target/debug/deps/simple_rs-bfbc34c031ddf687.ll -D ifds-taint --an
 
 run with debug logs
 ```
-phasar-cli -m target/debug/deps/simple_rs-bfbc34c031ddf687.ll -D ifds-taint --analysis-config=analysis-config.json --entry-points="_ZN9simple_rs4main17h853097ccb5531a89E" -L --log-level=DEBUG
+phasar-cli -m target/debug/deps/simple_rs-bfbc34c031ddf687.ll -D ifds-taint --analysis-config=analysis-config.json --entry-points="_ZN9simple_rs4main17h853097ccb5531a89E" -L --log-level=DEBUG > debug.log 2>&1
 ```
