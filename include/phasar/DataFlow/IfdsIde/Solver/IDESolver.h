@@ -586,6 +586,8 @@ protected:
           CachedFlowEdgeFunctions.getCallToRetFlowFunction(n, ReturnSiteN,
                                                            Callees);
       INC_COUNTER("FF Queries", 1, PAMM_SEVERITY_LEVEL::Full);
+      // PHASAR_LOG_LEVEL(DEBUG, "IDESolver::processCall returnSite loop: d2 " << IDEProblem.DtoString(d2));
+      // PHASAR_LOG_LEVEL(DEBUG, "IDESolver::processCall returnSite loop: d2 llvm Value name:" << d2->getName());
       container_type ReturnFacts =
           computeCallToReturnFlowFunction(CallToReturnFF, d1, d2);
       ADD_TO_HISTOGRAM("Data-flow facts", returnFacts.size(), 1,

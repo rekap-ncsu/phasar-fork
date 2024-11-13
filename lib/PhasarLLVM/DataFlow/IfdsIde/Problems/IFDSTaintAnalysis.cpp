@@ -259,8 +259,15 @@ IFDSTaintAnalysis::getCallToRetFlowFunction(
       if (LLVMZeroValue::isLLVMZeroValue(Source)) {
         return Gen;
       }
+      PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::getCallToRetFlowFunction kill.empty lambda: ");
+      for(auto el: Leak)
+      {
+        PHASAR_LOG_LEVEL(DEBUG, "\t" << el->getName());
+      }
 
+      PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::getCallToRetFlowFunction kill.empty lambda: [" << this->DtoString(Source) << "]");
       if (Leak.count(Source)) {
+        PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::getCallToRetFlowFunction kill.empty lambda: the source is in Leak!");
         Leaks[CallSite].insert(Source);
       }
 

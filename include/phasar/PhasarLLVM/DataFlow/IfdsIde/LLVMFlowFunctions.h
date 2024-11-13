@@ -14,6 +14,7 @@
 #include "phasar/PhasarLLVM/DataFlow/IfdsIde/LLVMZeroValue.h"
 #include "phasar/PhasarLLVM/Utils/LLVMShorthands.h"
 #include "phasar/Utils/TypeTraits.h"
+#include "phasar/Utils/Logger.h"
 
 #include "llvm/ADT/PointerIntPair.h"
 #include "llvm/IR/Constant.h"
@@ -272,6 +273,7 @@ mapFactsToCaller(const llvm::CallBase *CallSite,
           FactConstructor(std::forward<DCtor>(FactConstructor)) {}
 
     Container computeTargets(D Source) override {
+      PHASAR_LOG_LEVEL(DEBUG, "computeTargets got called");
       Container Res;
       if (ExitInstAndPropZero.getInt() &&
           LLVMZeroValue::isLLVMZeroValue(Source)) {
