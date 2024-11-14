@@ -1,0 +1,21 @@
+{
+	"name": "taint analysis through struct",
+	"version": 1,
+	"functions": [
+		{
+			"name": ,
+			"ret": "source",
+			"params": {},
+			"comment": "find the mangled source name"
+		},
+		{
+			"name": ,
+			"params":
+            {
+				"sink": [0]
+			},
+			"comment": "find the mangled source name"
+		}
+	],
+	"variables": []
+}
