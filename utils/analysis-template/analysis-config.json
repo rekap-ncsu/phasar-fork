@@ -1,0 +1,21 @@
+{
+	"name": "analysis config template. Add function entries using the mangled sources",
+	"version": 1,
+	"functions": [
+		{
+			"name": ,
+			"ret": "source",
+			"params": {},
+			"comment": "find the mangled source name"
+		},
+		{
+			"name": ,
+			"params":
+            {
+				"sink": [0]
+			},
+			"comment": "find the mangled source name"
+		}
+	],
+	"variables": []
+}
