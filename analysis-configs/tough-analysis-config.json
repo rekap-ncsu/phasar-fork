@@ -1,0 +1,48 @@
+{
+	"name": "tough analysis config",
+	"version": 1,
+	"functions": [
+		{
+			"name": "_ZN10serde_json2de11from_reader17h7f4f43204201555cE",
+			"ret": "source",
+			"params": {
+				"source": [0]
+			},
+			"comment": "mangled instance of serde_json::de::from_reader"
+		},
+		{
+			"name": "_ZN10serde_json2de11from_reader17hab777053e9bdc93dE",
+			"ret": "source",
+			"params": {
+				"source": [0]
+			},
+			"comment": "mangled instance of serde_json::de::from_reader"
+		},
+		{
+			"name": "_ZN10serde_json2de11from_reader17hf0b3921505444539E",
+			"ret": "source",
+			"params": {
+				"source": [0]
+			},
+			"comment": "mangled instance of serde_json::de::from_reader"
+		},
+		
+		{
+			"name": "_ZN3std2io4copy4copy17hc3025e22b0293930E",
+			"params":
+            {
+				"sink": [1]
+			},
+			"comment": "first mangled std::io::copy definition"
+		},
+		{
+			"name": "_ZN3std2io4copy4copy17hed48fc98969edc73E",
+			"params":
+            {
+				"sink": [1]
+			},
+			"comment": "second mangled std::io::copy definition. This is called by `reqwest::blocking::response::Response::copy_to` so it shouldn't cause any leaks"
+		}
+	],
+	"variables": []
+}
