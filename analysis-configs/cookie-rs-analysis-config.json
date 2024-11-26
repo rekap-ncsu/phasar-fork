@@ -1,0 +1,22 @@
+{
+	"name": "cookie-rs analysis config",
+	"version": 1,
+	"functions": [
+		{
+			"name": "_ZN6cookie6Cookie5parse17h3d1e25b35e4dc02fE",
+			"params": {
+				"source": [1]
+			},
+			"comment": "mangled `parse()`"
+		},
+		{
+			"name": "_ZN4time8duration8Duration7seconds17h043461c6eeff3c6cE",
+			"params":
+            {
+				"sink": [0]
+			},
+			"comment": "mangled name of `time::duration::Duration::seconds"
+		}
+	],
+	"variables": []
+}
