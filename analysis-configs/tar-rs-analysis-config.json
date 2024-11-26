@@ -1,0 +1,29 @@
+{
+	"name": "tar_rs analysis config",
+	"version": 1,
+	"functions": [
+		{
+			"name": "_ZN3tar6header6Header13set_link_name17h9232e24e8151ff85E",
+			"params": {
+				"source": [1]
+			},
+			"comment": "mangled `set_link_name`"
+		},
+		{
+			"name": "_ZN3tar6header6Header8set_path17h82b6acff7a571ff7E",
+			"params": {
+				"source": [1]
+			},
+			"comment": "mangled `set_path`"
+		},
+		{
+			"name": "_ZN3std2fs14create_dir_all17h1799db9401508f2eE",
+			"params":
+            {
+				"sink": [0]
+			},
+			"comment": "mangled name of `create_dir_all"
+		}
+	],
+	"variables": []
+}
