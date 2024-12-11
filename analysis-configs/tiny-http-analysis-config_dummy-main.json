@@ -1,0 +1,38 @@
+{
+	"name": "tiny_http analysis config on dummy main",
+	"version": 1,
+	"functions": [
+		{
+			"name": "_ZN3std3net3tcp11TcpListener6accept17h5cd2b7d81bd2aaf6E",
+			"params": {
+				"source": [0]
+			},
+			"comment": "mangled std::net::tcp::TcpListener::accept source. note that its return value is parameter 0"
+		},
+		{
+			"name": "_ZN9tiny_http6Server4recv17h1f6269d74996667dE",
+			"params":
+            {
+				"sink": [0]
+			},
+			"comment": "mangled tiny_http::Server::recv sink. note that its return value is moved into parameter 0, and `self` is parameter 1"
+		},
+		{
+			"name": "_ZN9tiny_http6Server12recv_timeout17hb889cec295afaf8cE",
+			"params":
+            {
+				"sink": [0]
+			},
+			"comment": "mangled tiny_http::Server::recv_timeout sink. note that its return value is moved into parameter 0, and `self` is parameter 1"
+		},
+		{
+			"name": "_ZN9tiny_http6Server8try_recv17h790f3bed950ee1a1E",
+			"params":
+            {
+				"sink": [0]
+			},
+			"comment": "mangled tiny_http::Server::try_recv sink. note that its return value is moved into parameter 0, and `self` is parameter 1"
+		}
+	],
+	"variables": []
+}
