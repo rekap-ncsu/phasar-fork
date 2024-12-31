@@ -29,7 +29,7 @@ R"(
                     "description": "Tags function parameters as source, sink or sanitizer",
                     "properties": {
                         "source": {
-                            "description": "Zero based indices of source tags",
+                            "description": "Zero based indices of source tags. This does not actually seem to do anything, but have not verified it in the code yet",
                             "type": "array",
                             "properties": {
                                 "type": ["number", "string"]
@@ -74,7 +74,8 @@ R"(
                     "description": "Categorizes this variable as source, sink, or sanitizer"
                 }
             },
-            "required": ["scope", "name", "cat"]
+            "required": ["scope", "name", "cat"],
+            "comment": "an assertion fails if 'line' is missing, but no assert fail if 'scope' is missing"
         }
     }
 }
