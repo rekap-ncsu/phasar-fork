@@ -1,0 +1,33 @@
+{
+	"name": "cookie-rs analysis config",
+	"version": 1,
+	"functions": [
+		{
+			"name": "_ZN10entry_test5entry17h783905e945198bc0E",
+			"params": {
+				"source": [0]
+			},
+			"comment": "bleh"
+		},
+		{
+			"name": "_ZN10entry_test9sink_func17ha22a39fc0027d514E",
+			"params":
+            {
+				"sink": [0]
+			},
+			"comment": "sink"
+		},
+		{
+			"name": "_ZN10entry_test11source_func17h67fe1222bedff2adE",
+			"ret": "source",
+			"comment": "source2"
+		}
+	],
+	"variables": [
+		{
+			"name": "conspicuous_x",
+			"line": 1,
+			"cat": "source"
+		}
+	]
+}
