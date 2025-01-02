@@ -11,7 +11,7 @@ fn source_func() -> usize
 pub fn entry_wrapper()
 {
     entry(5);
-    sink_func(source_func())
+    // sink_func(source_func())
 }
 
 fn sink_func(_conspicuous_arg0: usize)
