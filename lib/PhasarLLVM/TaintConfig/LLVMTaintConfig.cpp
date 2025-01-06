@@ -303,9 +303,11 @@ void LLVMTaintConfig::addTaintCategory(const llvm::Value *Val,
                                        TaintCategory Annotation) {
   switch (Annotation) {
   case TaintCategory::Source:
+    PHASAR_LOG_LEVEL(DEBUG, "jpangia: LLVMTaintConfig::addTaintCategory source Val: " << Val->getName());
     addSourceValue(Val);
     break;
   case TaintCategory::Sink:
+    PHASAR_LOG_LEVEL(DEBUG, "jpangia: LLVMTaintConfig::addTaintCategory sink Val: " << Val->getName());
     addSinkValue(Val);
     break;
   case TaintCategory::Sanitizer:
