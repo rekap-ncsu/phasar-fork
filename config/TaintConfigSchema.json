@@ -75,7 +75,7 @@ R"(
                 }
             },
             "required": ["scope", "name", "cat"],
-            "comment": "an assertion fails if 'line' is missing, but no assert fail if 'scope' is missing"
+            "comment": "jpangia: an assertion fails if 'line' is missing, but no assert fail if 'scope' is missing"
         }
     }
 }
