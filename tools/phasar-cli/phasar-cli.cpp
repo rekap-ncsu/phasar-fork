@@ -134,7 +134,7 @@ cl::opt<Soundness>
                  cl::init(Soundness::Soundy), cl::cat(PsrCat), cl::Hidden);
 PSR_OPTION_FLAG(AutoGlobalsOpt, "auto-globals",
                 "Enable automated support for global initializers",
-                cl::init(true));
+                cl::init(true)); 
 
 PSR_SHORTLONG_OPTION(
     StatisticsOpt, bool, "S", "emit-stats",

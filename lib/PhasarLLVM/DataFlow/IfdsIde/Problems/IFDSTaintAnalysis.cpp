@@ -45,9 +45,8 @@ IFDSTaintAnalysis::IFDSTaintAnalysis(const LLVMProjectIRDB *IRDB,
 bool IFDSTaintAnalysis::isSourceCall(const llvm::CallBase *CB,
                                      const llvm::Function *Callee) const {
   for (const auto &Arg : Callee->args()) {
-    PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::isSourceCall: ");
-    PHASAR_LOG_LEVEL(DEBUG, Arg.hasName());
     if (Config->isSource(&Arg)) {
+      PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::isSourceCall: " << Callee->getName() << " has a source argument!");
       return true;
     }
   }
@@ -173,6 +172,8 @@ IFDSTaintAnalysis::getCallFlowFunction(IFDSTaintAnalysis::n_t CallSite,
   // The respective taints or leaks are then generated in the corresponding
   // call to return flow function.
   if (isSourceCall(CS, DestFun) || isSinkCall(CS, DestFun)) {
+    PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::getCallFlowFunction: returning a killall for Callsite " << this->NtoString(CallSite)
+                              << " and destination function " << this->FtoString(DestFun));
     return killAllFlows<d_t>();
   }
 
@@ -218,6 +219,7 @@ IFDSTaintAnalysis::getCallToRetFlowFunction(
       HasBody = true;
     }
     collectGeneratedFacts(Gen, *Config, CS, Callee);
+    PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::getCallToRetFlowFunction: collecting leaked facts for " << this->FtoString(Callee));
     collectLeakedFacts(Leak, *Config, CS, Callee);
     collectSanitizedFacts(Kill, *Config, CS, Callee);
   }
@@ -242,7 +244,14 @@ IFDSTaintAnalysis::getCallToRetFlowFunction(
   if (Gen.empty() && (!Leak.empty() || !Kill.empty())) {
     return lambdaFlow<d_t>([Leak{std::move(Leak)}, Kill{std::move(Kill)}, this,
                             CallSite](d_t Source) -> std::set<d_t> {
+      PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::getCallToRetFlowFunction gen.empty etc lambda Source: ");
+      PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::getCallToRetFlowFunction [" << this->DtoString(Source) << "]");
+
+      PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::getCallToRetFlowFunction gen.empty etc lambda CallSite: ");
+      PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::getCallToRetFlowFunction [" << this->NtoString(CallSite) << "]");
+      
       if (Leak.count(Source)) {
+        PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::getCallToRetFlowFunction  gen.empty etc lambda: the source is in Leak!");
         Leaks[CallSite].insert(Source);
       }
 
@@ -259,13 +268,17 @@ IFDSTaintAnalysis::getCallToRetFlowFunction(
       if (LLVMZeroValue::isLLVMZeroValue(Source)) {
         return Gen;
       }
-      PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::getCallToRetFlowFunction kill.empty lambda: ");
+      PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::getCallToRetFlowFunction kill.empty lambda Leak: ");
       for(auto el: Leak)
       {
         PHASAR_LOG_LEVEL(DEBUG, "\t" << el->getName());
       }
 
-      PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::getCallToRetFlowFunction kill.empty lambda: [" << this->DtoString(Source) << "]");
+      PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::getCallToRetFlowFunction kill.empty lambda Source: ");
+      PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::getCallToRetFlowFunction [" << this->DtoString(Source) << "]");
+
+      PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::getCallToRetFlowFunction kill.empty lambda CallSite: ");
+      PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::getCallToRetFlowFunction [" << this->NtoString(CallSite) << "]");
       if (Leak.count(Source)) {
         PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::getCallToRetFlowFunction kill.empty lambda: the source is in Leak!");
         Leaks[CallSite].insert(Source);
@@ -277,11 +290,15 @@ IFDSTaintAnalysis::getCallToRetFlowFunction(
   return lambdaFlow<d_t>([Gen{std::move(Gen)}, Leak{std::move(Leak)},
                           Kill{std::move(Kill)}, this,
                           CallSite](d_t Source) -> std::set<d_t> {
+    PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::getCallToRetFlowFunction default lambda: ");
+    
     if (LLVMZeroValue::isLLVMZeroValue(Source)) {
       return Gen;
     }
 
+    PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::getCallToRetFlowFunction default lambda: [" << this->DtoString(Source) << "]");
     if (Leak.count(Source)) {
+      PHASAR_LOG_LEVEL(DEBUG, "IFDSTaintAnalysis::getCallToRetFlowFunction default lambda: the source is in Leak!");
       Leaks[CallSite].insert(Source);
     }
 

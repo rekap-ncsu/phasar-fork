@@ -12,6 +12,7 @@
 
 #include "phasar/PhasarLLVM/TaintConfig/LLVMTaintConfig.h"
 #include "phasar/PhasarLLVM/Utils/LLVMShorthands.h"
+#include "phasar/Utils/Logger.h"
 
 #include "llvm/IR/Function.h"
 #include "llvm/IR/Instructions.h"
@@ -53,6 +54,7 @@ void collectLeakedFacts(ContainerTy &Dest, const LLVMTaintConfig &Config,
 
   const auto &Callback = Config.getRegisteredSinkCallBack();
   if (Callback) {
+    PHASAR_LOG_LEVEL(DEBUG, "collectLeakedFacts: copied CBLeaks");
     auto CBLeaks = Callback(CB);
     std::copy_if(CBLeaks.begin(), CBLeaks.end(),
                  std::inserter(Dest, Dest.end()), LeakIf);
@@ -60,6 +62,9 @@ void collectLeakedFacts(ContainerTy &Dest, const LLVMTaintConfig &Config,
 
   for (unsigned I = 0, End = Callee->arg_size(); I < End; ++I) {
     if (Config.isSink(Callee->getArg(I)) && LeakIf(CB->getArgOperand(I))) {
+      PHASAR_LOG_LEVEL(DEBUG, "collectLeakedFacts: isSink for " << Callee->getArg(I)->getName() 
+                        << " called by " << Callee->getName() << ": " << Config.isSink(Callee->getArg(I)));
+      PHASAR_LOG_LEVEL(DEBUG, "collectLeakedFacts: inserted " << CB->getArgOperand(I)->getName());
       Dest.insert(CB->getArgOperand(I));
     }
   }

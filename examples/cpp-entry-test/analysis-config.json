@@ -1,5 +1,5 @@
 {
-	"name": "taint analysis through string concat",
+	"name": "CPP taint analysis through entry point with args",
 	"version": 1,
 	"functions": [
 		{
@@ -15,6 +15,14 @@
 				"sink": [0]
 			},
 			"comment": "find the mangled sink name"
+		},
+		{
+			"name": "_Z5entryi",
+			"params": 
+			{
+				"source": [0]
+			},
+			"comment": "the mangled entry point that is also the source"
 		}
 	],
 	"variables": []

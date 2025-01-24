@@ -21,6 +21,11 @@
 			"name": "_ZN10entry_test11source_func17h67fe1222bedff2adE",
 			"ret": "source",
 			"comment": "source2"
+		},
+		{
+			"name": "_ZN10entry_test12make_tainted17hdfaf5bee57b5ea0bE",
+			"ret": "source",
+			"comment": "a passthrough function to make something tainted"
 		}
 	]
 }

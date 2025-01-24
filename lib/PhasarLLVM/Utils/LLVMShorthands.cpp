@@ -171,6 +171,13 @@ std::string llvmIRToString(const llvm::Value *V) {
   std::string IRBuffer;
   llvm::raw_string_ostream RSO(IRBuffer);
   V->print(RSO, getModuleSlotTrackerFor(V));
+
+  // jpangia: debugging stuff. trying to figure out what exactly `d_t` was
+  // llvm::errs() << "[";
+  // V->print(llvm::errs(), getModuleSlotTrackerFor(V));
+  // llvm::errs() << "]\n";
+  // llvm::errs().flush();
+
   RSO << " | ID: " << getMetaDataID(V);
   RSO.flush();
   return llvm::StringRef(IRBuffer).ltrim().str();

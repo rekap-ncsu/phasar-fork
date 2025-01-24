@@ -303,8 +303,10 @@ void LLVMTaintConfig::addTaintCategory(const llvm::Value *Val,
                                        TaintCategory Annotation) {
   switch (Annotation) {
   case TaintCategory::Source:
+    PHASAR_LOG_LEVEL(DEBUG, "jpangia: LLVMTaintConfig::addTaintCategory SourceValues size before: " << SourceValues.size());
     PHASAR_LOG_LEVEL(DEBUG, "jpangia: LLVMTaintConfig::addTaintCategory source Val: " << Val->getName());
     addSourceValue(Val);
+    PHASAR_LOG_LEVEL(DEBUG, "jpangia: LLVMTaintConfig::addTaintCategory SourceValues size after: " << SourceValues.size());
     break;
   case TaintCategory::Sink:
     PHASAR_LOG_LEVEL(DEBUG, "jpangia: LLVMTaintConfig::addTaintCategory sink Val: " << Val->getName());
@@ -325,6 +327,7 @@ void LLVMTaintConfig::addTaintCategory(const llvm::Value *Val,
 
 bool LLVMTaintConfig::isSourceImpl(const llvm::Value *V) const {
   PHASAR_LOG_LEVEL(DEBUG, "LLVMTaintConfig::isSourceImpl: " << V->getName() << ", " << V->getValueName());
+  PHASAR_LOG_LEVEL(DEBUG, "LLVMTaintConfig::isSourceImpl: count(V) " << SourceValues.count(V));
   return SourceValues.count(V);
 }
 bool LLVMTaintConfig::isSinkImpl(const llvm::Value *V) const {

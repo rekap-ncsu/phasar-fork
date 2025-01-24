@@ -369,6 +369,9 @@ LLVMBasedICFG::LLVMBasedICFG(LLVMProjectIRDB *IRDB,
     : TH(TH) {
   assert(IRDB != nullptr);
   this->IRDB = IRDB;
+  auto msg = (IncludeGlobals ? "true" : "false");
+  PHASAR_LOG_LEVEL(DEBUG, "LLVMBasedICFG::LLVMBasedICFG IncludeGlobals: " << msg);
+
 
   Builder B{IRDB, this, PT};
   LLVMAliasInfo PTOwn;

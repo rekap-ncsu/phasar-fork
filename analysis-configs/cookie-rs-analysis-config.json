@@ -16,6 +16,11 @@
 				"sink": [0]
 			},
 			"comment": "mangled name of `time::duration::Duration::seconds"
+		},
+		{
+			"name" : "_ZN6cookie6Cookie12make_tainted17h9ac346eaca9311f8E",
+			"ret" : "source",
+			"comment" : "annotation as source function"
 		}
 	],
 	"variables": []

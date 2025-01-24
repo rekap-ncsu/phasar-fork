@@ -297,6 +297,9 @@ public:
       if(Problem.FtoString(callee).find("sink_func") != std::string::npos)
       {
         PHASAR_LOG_LEVEL(DEBUG, "found hard-coded sink func");
+        PHASAR_LOG_LEVEL(DEBUG,
+                         "with Call Site : " << Problem.NtoString(CallSite));
+        
       }
     }
     auto Key = std::tie(CallSite, RetSite);

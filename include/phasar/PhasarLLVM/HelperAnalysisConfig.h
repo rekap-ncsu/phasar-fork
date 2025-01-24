@@ -24,7 +24,7 @@ struct HelperAnalysisConfig {
   AliasAnalysisType PTATy = AliasAnalysisType::CFLAnders;
   CallGraphAnalysisType CGTy = CallGraphAnalysisType::OTF;
   Soundness SoundnessLevel = Soundness::Soundy;
-  bool AutoGlobalSupport = true;
+  bool AutoGlobalSupport = false; //jpangia: CHANGEME back to the original value of `true`
   bool AllowLazyPTS = true;
 
   HelperAnalysisConfig &&withCGType(CallGraphAnalysisType CGTy) &&noexcept {
