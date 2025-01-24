@@ -141,5 +141,39 @@
                 }
             ]
         },
+        {
+            "name": "C++ entry test",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceRoot}/build/tools/phasar-cli/phasar-cli",
+            "args": [
+                "-m",
+                "main.ll", //this is brittle. it changes with every build
+                "-D",
+                "ifds-taint",
+                "--analysis-config=analysis-config.json",
+                "--entry-points",
+                "_Z13entry_wrapperv", //also brittle
+                "-L",
+                "-log-level=DEBUG",
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceRoot}/examples/cpp-entry-test/",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        },
     ]
 }
